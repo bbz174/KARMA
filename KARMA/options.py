@@ -9,7 +9,7 @@ def args_parser():
     parser.add_argument('--clean_model_path', type=str, help='clean model path')
     parser.add_argument('--epochs', type=int, help='num of epochs')
     parser.add_argument('--task', type=str, default='sentiment', help='task: sentiment or sent-pair')
-    parser.add_argument('--data_path', type=str, default='../../../../datasets', help='dataset path')
+    parser.add_argument('--data_path', type=str, default='./datasets', help='dataset path')
     parser.add_argument('--data_dir', type=str, help='data dir of train and dev file')
     parser.add_argument('--save_model_path', type=str, default='./models', help='path that new model saved in')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size')

@@ -24,8 +24,8 @@ if __name__ == '__main__':
     BATCH_SIZE = args.batch_size
     save_path = args.save_model_path
     valid_type = args.valid_type
-
-    forgetted_data_dir = os.path.join(args.data_path, 'sentiment', f'{args.dataset}_forgotten', 'data.tsv')
+ 
+    forget_data_dir = os.path.join(args.data_path, 'sentiment', f'{args.dataset}_forgotten', 'data.tsv')
     model, parallel_model, tokenizer = pure_process_model(clean_model_path, device)
 
     criterion = nn.CrossEntropyLoss()
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     save_metric = 'acc'
     if args.task == 'sentiment':
-        model_ga(forgetted_data_dir, valid_data_file, model, parallel_model, tokenizer,
+        model_ga(forget_data_dir, valid_data_file, model, parallel_model, tokenizer,
                     BATCH_SIZE, EPOCHS, optimizer, criterion, device, SEED, save_model, save_path, save_metric,
                     valid_type)
     else:

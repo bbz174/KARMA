@@ -305,7 +305,7 @@ class FisherInfluenceAnalyzer_pseudo:
         return single_token_ids, single_phrases, ngram_token_ids, ngram_phrases
 
 def generate_injected_samples_from_keywords(
-        reversed_ratio, corpus_file,output_file, forgetted_text_list, forgetted_label_list,
+        reversed_ratio, corpus_file,output_file, forget_text_list, forget_label_list,
         model, tokenizer, device, topk=1, max_num=250, max_len=250,
         use_ngram=True, seed=1234
 ):
@@ -318,7 +318,7 @@ def generate_injected_samples_from_keywords(
 
     analyzer = FisherInfluenceAnalyzer_pseudo(model, tokenizer, device)
     single_token_ids, single_phrases, ngram_token_ids, ngram_phrases = analyzer.analyze_batch(
-        forgetted_text_list, forgetted_label_list, topk=topk
+        forget_text_list, forget_label_list, topk=topk
     )
 
     save_fisher_keywords_tsv(
@@ -330,7 +330,7 @@ def generate_injected_samples_from_keywords(
     op_file = codecs.open(output_file, 'w', 'utf-8')
     op_file.write('sentence\tlabel' + '\n')
 
-    shuffled_labels = flip_labels(forgetted_label_list, flip_ratio=ratio)
+    shuffled_labels = flip_labels(forget_label_list, flip_ratio=ratio)
 
     train_text_list = []
     train_label_list = []
